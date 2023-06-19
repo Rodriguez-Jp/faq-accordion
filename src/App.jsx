@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { Question } from "./components/Question";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const generateKey = () => crypto.randomUUID();
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className="flex justify-center items-center w-full h-screen">
+        <div className="w-2/4 text-center bg-red-400 p-5">
+          <h2 className="p-2 mb-2 font-bold text-white text-2xl">
+            Frequently Asked Question (FAQ)
+          </h2>
+          <div className="">
+            {questions.map((question) => (
+              <Question key={generateKey()} question={question} />
+            ))}
+          </div>
+        </div>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+const questions = [
+  {
+    id: 1,
+    title: "Is this a good product?",
+    info: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem.",
+  },
+  {
+    id: 2,
+    title: "How much does it cost?",
+    info: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem.",
+  },
+  {
+    id: 3,
+    title: "When can I get it?",
+    info: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui facere in labore maxime, assumenda iure sed tenetur alias omnis eveniet similique laborum, neque porro unde ducimus officiis animi vitae! Quidem.",
+  },
+];
+
+export default App;
